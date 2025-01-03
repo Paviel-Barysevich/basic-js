@@ -15,12 +15,11 @@ const { NotImplementedError } = require("../extensions/index.js");
 class DepthCalculator {
   calculateDepth(arr) {
     let counter = 1;
-    const arrToStr = JSON.stringify(arr);
-    const copyArr = JSON.parse(arrToStr);
+    const copyArr = [...arr];
     const complitlyFlatArr = copyArr.flat(Infinity);
     const complitlyFlatArrToStr = JSON.stringify(complitlyFlatArr);
 
-    const anotherCopyArr = JSON.parse(arrToStr);
+    const anotherCopyArr = [...arr];
     const flattedArr = anotherCopyArr.flat(counter);
     const flattedArrToString = JSON.stringify(flattedArr);
 

@@ -17,8 +17,7 @@ function deleteDigit(n) {
   let maxNumberArray = [];
 
   for (let i = 0; i < digitArray.length; i++) {
-    const digitArrayString = JSON.stringify(digitArray);
-    const copyDigitArray = JSON.parse(digitArrayString);
+    const copyDigitArray = [...digitArray];
 
     copyDigitArray.splice(i, 1);
 
