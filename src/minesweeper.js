@@ -23,9 +23,58 @@ const { NotImplementedError } = require('../lib');
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  // Remove line below and write your code here
-  throw new NotImplementedError('Not implemented');
+function minesweeper(matrix) {
+  const resultArray = [...matrix];
+
+  for (let i = 0; i < resultArray.length; i += 1) {
+    resultArray[i] = [...matrix[i]];
+  }
+
+  for (let r = 0; r < matrix.length; r += 1) {
+    for (let c = 0; c < matrix[0].length; c += 1) {
+      if (r > 0 && r < matrix.length - 1 && c > 0 && c < matrix[0].length - 1) {
+        resultArray[r][c] = 0 + matrix[r][c - 1] + matrix[r][c + 1]
+        + matrix[r - 1][c - 1] + matrix[r - 1][c] + matrix[r - 1][c + 1]
+        + matrix[r + 1][c - 1] + matrix[r + 1][c] + matrix[r + 1][c + 1];
+      }
+      if (r === 0 && c === 0) {
+        resultArray[r][c] = 0 + matrix[r][c + 1] + matrix[r + 1][c]
+        + matrix[r + 1][c + 1];
+      }
+      if (r === 0 && c === matrix[0].length - 1) {
+        resultArray[r][c] = 0 + matrix[r][c - 1] + matrix[r + 1][c - 1]
+        + matrix[r + 1][c];
+      }
+      if (r === matrix.length - 1 && c === 0) {
+        resultArray[r][c] = 0 + matrix[r][c + 1] + matrix[r - 1][c]
+        + matrix[r - 1][c + 1];
+      }
+      if (r === matrix.length - 1 && c === matrix[0].length - 1) {
+        resultArray[r][c] = 0 + matrix[r][c - 1] + matrix[r - 1][c - 1]
+        + matrix[r - 1][c];
+      }
+      if (r > 0 && r < matrix.length - 1 && c === 0) {
+        resultArray[r][c] = 0 + matrix[r][c + 1]
+        + matrix[r - 1][c] + matrix[r - 1][c + 1]
+        + matrix[r + 1][c] + matrix[r + 1][c + 1];
+      }
+      if (r > 0 && r < matrix.length - 1 && c === matrix[0].length - 1) {
+        resultArray[r][c] = 0 + matrix[r][c - 1]
+        + matrix[r - 1][c] + matrix[r - 1][c - 1]
+        + matrix[r + 1][c] + matrix[r + 1][c - 1];
+      }
+      if (r === 0 && c > 0 && c < matrix[0].length - 1) {
+        resultArray[r][c] = 0 + matrix[r][c - 1] + matrix[r][c + 1]
+        + matrix[r + 1][c - 1] + matrix[r + 1][c] + matrix[r + 1][c + 1];
+      }
+      if (r === matrix.length - 1 && c > 0 && c < matrix[0].length - 1) {
+        resultArray[r][c] = 0 + matrix[r][c - 1] + matrix[r][c + 1]
+        + matrix[r - 1][c - 1] + matrix[r - 1][c] + matrix[r - 1][c + 1];
+      }
+    }
+  }
+
+  return resultArray;
 }
 
 module.exports = {
